@@ -54,20 +54,20 @@ export default {
       default: ''
     }
   },
-  data() {
+  data () {
     this.onlyOneChild = null
     return {}
   },
   computed: {
-    device() {
+    device () {
       return this.$store.state.app.device
     }
   },
-  mounted() {
+  mounted () {
     this.fixBugIniOS()
   },
   methods: {
-    fixBugIniOS() {
+    fixBugIniOS () {
       const $subMenu = this.$refs.subMenu
       if ($subMenu) {
         const handleMouseleave = $subMenu.handleMouseleave
@@ -79,7 +79,7 @@ export default {
         }
       }
     },
-    hasOneShowingChild(children = [], parent) {
+    hasOneShowingChild (children = [], parent) {
       const showingChildren = children.filter(item => {
         if (item.hidden) {
           return false
@@ -103,7 +103,7 @@ export default {
 
       return false
     },
-    resolvePath(routePath) {
+    resolvePath (routePath) {
       if (isExternal(routePath)) {
         return routePath
       }

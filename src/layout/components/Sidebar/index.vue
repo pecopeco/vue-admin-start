@@ -35,7 +35,7 @@ export default {
   components: {
     SidebarItem
   },
-  data() {
+  data () {
     return {
       title: 'Vue Admin Start',
       logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
@@ -45,10 +45,10 @@ export default {
     ...mapGetters([
       'sidebar'
     ]),
-    routes() {
+    routes () {
       return this.$router.options.routes
     },
-    activeMenu() {
+    activeMenu () {
       const route = this.$route
       const { meta, path } = route
       // if set path, the sidebar will highlight the path you set
@@ -57,10 +57,10 @@ export default {
       }
       return path
     },
-    showLogo() {
+    showLogo () {
       return this.$store.state.settings.sidebarLogo
     },
-    isCollapse() {
+    isCollapse () {
       return !this.sidebar.opened
     }
   }
@@ -68,7 +68,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/color"
+@import '~@/variable'
 
 .sidebarLogoFade-enter-active {
   transition opacity 1.5s

@@ -123,20 +123,20 @@ export default {
 </script>
 
 <style lang="stylus">
-$bg = #283443
-$cursor = #fff
-$dark_gray = #889aa4
-$light_gray = #eee
+bg = #283443
+cursor = #fff
+darkGray = #889aa4
+lightGray = #eee
 
-@supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
+@supports (-webkit-mask: none) and (not (cater-color: cursor)) {
   .login-container .el-input input {
-    color $cursor
+    color cursor
   }
 }
 .login-container {
   min-height 100%
   width 100%
-  background-color $bg
+  background-color bg
   overflow hidden
   .login-form {
     position relative
@@ -158,7 +158,7 @@ $light_gray = #eee
   }
   .img-wrap {
     padding 6px 5px 6px 15px
-    color $dark_gray
+    color darkGray
     vertical-align middle
     width 30px
     display inline-block
@@ -170,7 +170,7 @@ $light_gray = #eee
     position relative
     .title {
       font-size 26px
-      color $light_gray
+      color lightGray
       margin 0px auto 40px auto
       text-align center
       font-weight bold
@@ -181,7 +181,7 @@ $light_gray = #eee
     right 10px
     top 7px
     font-size 16px
-    color $dark_gray
+    color darkGray
     cursor pointer
     user-select none
   }
@@ -195,12 +195,12 @@ $light_gray = #eee
       -webkit-appearance none
       border-radius 0px
       padding 12px 5px 12px 15px
-      color $light_gray
+      color lightGray
       height 47px
-      caret-color $cursor
+      caret-color cursor
       &-webkit-autofill {
-        box-shadow 0 0 0px 1000px $bg inset !important
-        -webkit-text-fill-color $cursor !important
+        box-shadow 0 0 0px 1000px bg inset !important
+        -webkit-text-fill-color cursor !important
       }
     }
   }

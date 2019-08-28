@@ -13,7 +13,7 @@ import { resetRouter } from '@/router'
 import '@/index.styl'
 
 import NProgress from 'nprogress' // 页面顶端进度条
-import 'nprogress/nprogress.css' // progress bar style
+import 'nprogress/nprogress.css'
 import Cookies from 'js-cookie'
 import fly from 'flyio'
 

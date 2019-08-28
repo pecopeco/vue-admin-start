@@ -23,16 +23,16 @@ export default {
     AppMain
   },
   computed: {
-    sidebar() {
+    sidebar () {
       return this.$store.state.app.sidebar
     },
-    device() {
+    device () {
       return this.$store.state.app.device
     },
-    fixedHeader() {
+    fixedHeader () {
       return this.$store.state.settings.fixedHeader
     },
-    classObj() {
+    classObj () {
       return {
         hideSidebar: !this.sidebar.opened,
         openSidebar: this.sidebar.opened,
@@ -42,19 +42,19 @@ export default {
     }
   },
   watch: {
-    $route(route) {
+    $route (route) {
       if (this.device === 'mobile' && this.sidebar.opened) {
         store.dispatch('app/closeSideBar', { withoutAnimation: false })
       }
     }
   },
-  beforeMount() {
+  beforeMount () {
     window.addEventListener('resize', this.$_resizeHandler)
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('resize', this.$_resizeHandler)
   },
-  mounted() {
+  mounted () {
     const isMobile = this.$_isMobile()
     if (isMobile) {
       store.dispatch('app/toggleDevice', 'mobile')
@@ -62,11 +62,11 @@ export default {
     }
   },
   methods: {
-    $_isMobile() {
+    $_isMobile () {
       const rect = body.getBoundingClientRect()
       return rect.width - 1 < WIDTH
     },
-    $_resizeHandler() {
+    $_resizeHandler () {
       if (!document.hidden) {
         const isMobile = this.$_isMobile()
         store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
@@ -76,7 +76,7 @@ export default {
         }
       }
     },
-    handleClickOutside() {
+    handleClickOutside () {
       this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
     }
   }
@@ -84,7 +84,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/color.styl'
+@import '~@/variable'
 
 .app-wrapper {
   position relative
