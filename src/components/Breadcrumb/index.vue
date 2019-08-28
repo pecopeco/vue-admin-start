@@ -63,16 +63,16 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="stylus" scoped>
 .app-breadcrumb.el-breadcrumb {
-  display: inline-block;
-  font-size: 14px;
-  line-height: 50px;
-  margin-left: 8px;
+  display inline-block
+  font-size 14px
+  line-height 50px
+  margin-left 8px
 
   .no-redirect {
-    color: #97a8be;
-    cursor: text;
+    color #97a8be
+    cursor text
   }
 }
 </style>

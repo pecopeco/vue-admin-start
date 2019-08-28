@@ -28,15 +28,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="stylus" scoped>
 .hamburger {
-  display: inline-block;
-  vertical-align: middle;
-  width: 20px;
-  height: 20px;
+  display inline-block
+  vertical-align middle
+  width 20px
+  height 20px
 }
 
 .hamburger.is-active {
-  transform: rotate(180deg);
+  transform rotate(180deg)
 }
 </style>
