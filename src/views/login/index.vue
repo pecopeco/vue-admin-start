@@ -55,7 +55,7 @@ import { validUsername } from '@/utils/validate'
 export default {
   name: 'Login',
   mixins: [mixin],
-  data() {
+  data () {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
         callback(new Error('Please enter the correct user name'))
@@ -86,14 +86,14 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: (route) => {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
     }
   },
   methods: {
-    showPwd() {
+    showPwd () {
       if (this.passwordType === 'password') {
         this.passwordType = ''
       } else {
@@ -103,8 +103,8 @@ export default {
         this.$refs.password.focus()
       })
     },
-    handleLogin() {
-      this.$refs.loginForm.validate(async(valid) => {
+    handleLogin () {
+      this.$refs.loginForm.validate(async (valid) => {
         if (valid) {
           this.loading = true
           const param = { username: this.loginForm.username.trim(), password: this.loginForm.password }

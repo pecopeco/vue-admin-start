@@ -27,7 +27,7 @@ import mixin from '@/mixin.js'
 
 export default {
   filters: {
-    statusFilter(status) {
+    statusFilter (status) {
       const statusMap = {
         published: 'success',
         draft: 'gray',
@@ -37,17 +37,17 @@ export default {
     }
   },
   mixins: [mixin],
-  data() {
+  data () {
     return {
       list: null,
       listLoading: true
     }
   },
-  created() {
+  created () {
     this.fetchData()
   },
   methods: {
-    async fetchData() {
+    async fetchData () {
       this.listLoading = true
       const res = await this.$http.get('/table/list')
       this.list = res.data && res.data.items

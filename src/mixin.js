@@ -3,29 +3,29 @@ import { mapGetters } from 'vuex'
 export default {
   components: {
   },
-  data() {
+  data () {
     return {
     }
   },
   filters: {
   },
   methods: {
-    go(path) {
+    go (path) {
       this.$router.push(path)
     },
-    goBack() {
+    goBack () {
       this.$router.go(-1)
     },
     // 非空验证
-    validate(key) {
+    validate (key) {
       return !key || key.match(/^[ ]+$/)
     },
     // 手机号验证
-    isPhone(key) {
+    isPhone (key) {
       return !(key.length === 11 && /^((13|14|15|16|17|18|19)[0-9]{1}\d{8})$/.test(key))
     },
     // 日期格式化
-    formatTime(time, yearKey = '.', monthKey = '.', dayKey = '',
+    formatTime (time, yearKey = '.', monthKey = '.', dayKey = '',
       hasHour, hasMinute) {
       const date = new Date(time * 1000)
       const y = 1900 + date.getYear()
@@ -46,14 +46,14 @@ export default {
     ...mapGetters([
       'sidebar'
     ]),
-    userInfo() {
+    userInfo () {
       return this.$store.state.userInfo
     }
   },
   watch: {
   },
-  mounted() {
+  mounted () {
   },
-  beforeDestory() {
+  beforeDestory () {
   }
 }

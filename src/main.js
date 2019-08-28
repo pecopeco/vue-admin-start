@@ -31,7 +31,7 @@ const whiteList = ['/login'] // no redirect whitelist
 if (Cookies.get('Token')) {
   fly.config.headers = { 'X-Token': Cookies.get('Token') }
 }
-function request(url, form, type) {
+function request (url, form, type) {
   NProgress.start()
   const defaultUrl = process.env.VUE_APP_BASE_API
   let compleForm = form
@@ -97,7 +97,7 @@ request.put = (url, form) => request(url, form, 'put')
 Vue.prototype.$http = request
 
 // token验证、获取用户信息处理
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // start progress bar
   NProgress.start()
   // set page title
