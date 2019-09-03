@@ -31,7 +31,7 @@ const whiteList = ['/login'] // no redirect whitelist
 if (Cookies.get('Token')) {
   fly.config.headers = { 'X-Token': Cookies.get('Token') }
 }
-function request (url, form, type) {
+function request (url, form = {}, type) {
   NProgress.start()
   const defaultUrl = process.env.VUE_APP_BASE_API
   let compleForm = form
@@ -58,7 +58,7 @@ function request (url, form, type) {
       return
     } else if (type === 'delete' || res.status === 204) {
       return res.text()
-    } else if (res.data.state === 'T' || res.status === 200) {
+    } else if (res.data.state === 'T') {
       return res.data
     } else {
       this.$message.error(JSON.parse(res.data).error.msg)
