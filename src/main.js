@@ -44,7 +44,7 @@ function request (url, form = {}, type) {
     for (const key in form) {
       formData.append(key, form[key])
     }
-    compleForm = form
+    compleForm = formData
   }
   return fly.request(defaultUrl + url, compleForm, {
     method: type,
