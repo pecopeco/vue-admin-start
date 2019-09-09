@@ -9,6 +9,9 @@ import App from './App'
 import store from './store'
 import router from './router'
 import { resetRouter } from '@/router'
+import mixin from './mixin'
+
+Vue.mixin(mixin)
 
 import '@/index.styl'
 

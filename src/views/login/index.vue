@@ -49,12 +49,10 @@
 </template>
 
 <script>
-import mixin from '@/mixin.js'
 import { validUsername } from '@/utils/validate'
 
 export default {
   name: 'Login',
-  mixins: [mixin],
   data () {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {

@@ -5,11 +5,9 @@
 </template>
 
 <script>
-import mixin from '@/mixin.js'
 
 export default {
   name: 'Dashboard',
-  mixins: [mixin],
   computed: {
   }
 }

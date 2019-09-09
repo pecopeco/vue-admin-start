@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import mixin from '@/mixin.js'
 
 export default {
   filters: {
@@ -36,7 +35,6 @@ export default {
       return statusMap[status]
     }
   },
-  mixins: [mixin],
   data () {
     return {
       list: null,
