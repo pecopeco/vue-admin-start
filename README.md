@@ -1,6 +1,6 @@
 # vue-admin-start
 
-> vue admin 管理后台模板，使用vue-element-admin搭建，删除多余插件和配置并调整项目结构，添加一些个人习惯使用的组件，包含 Element UI、fly、pug、stylus等
+> vue admin 管理后台模板，使用 vue-element-admin 框架搭建，删除多余插件和配置并调整项目结构，添加一些个人习惯使用的组件，包含 Element UI、fly、pug、stylus等
 
 ## Build Setup
 
