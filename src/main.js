@@ -4,6 +4,8 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import { Message } from 'element-ui'
+
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 import App from './App'
 import store from './store'
@@ -12,8 +14,6 @@ import { resetRouter } from '@/router'
 import mixin from './mixin'
 
 Vue.mixin(mixin)
-
-import '@/index.styl'
 
 import NProgress from 'nprogress' // 页面顶端进度条
 import 'nprogress/nprogress.css'
@@ -34,9 +34,18 @@ const whiteList = ['/login'] // no redirect whitelist
 if (Cookies.get('Token')) {
   fly.config.headers = { 'X-Token': Cookies.get('Token') }
 }
+
+let config = {
+  api_url: process.env.NODE_ENV !== 'production'
+  ? '/api'
+  : process.env.VUE_APP_MODE === 'stage'
+  ? 'https://456.com'
+  : 'https://123.com'
+}
+Vue.prototype.$config = config
+
 function request (url, form = {}, type) {
   NProgress.start()
-  const defaultUrl = process.env.VUE_APP_BASE_API
   let compleForm = form
   // let presetForm = {
   //   orgName: 123456
@@ -49,7 +58,7 @@ function request (url, form = {}, type) {
     }
     compleForm = formData
   }
-  return fly.request(defaultUrl + url, compleForm, {
+  return fly.request(url, compleForm, {
     method: type,
     timeout: 5000
   }).then((res) => {
@@ -64,7 +73,7 @@ function request (url, form = {}, type) {
     } else if (res.data.state === 'T') {
       return res.data
     } else {
-      this.$message.error(JSON.parse(res.data).error.msg)
+      Message.error(JSON.parse(res.data).error.msg)
     }
   }).catch((err) => {
     NProgress.done()
@@ -87,7 +96,7 @@ function request (url, form = {}, type) {
     }
     if (err.status >= 300) {
       const errortext = codeMessage[err.status] || err.response.statusText
-      this.$message.error(errortext)
+      Message.error(errortext)
     }
   })
 }
@@ -123,7 +132,7 @@ router.beforeEach(async (to, from, next) => {
         next()
       } else {
         const res = await request.get('/user/info', { token: Cookies.get('Token') })
-        res.data && store.dispatch('setInfo', res.data)
+        res && res.data && store.dispatch('setInfo', res.data)
         next()
       }
     }

@@ -42,7 +42,7 @@ export default {
     }
   },
   watch: {
-    $route (route) {
+    $route () {
       if (this.device === 'mobile' && this.sidebar.opened) {
         store.dispatch('app/closeSideBar', { withoutAnimation: false })
       }
@@ -84,7 +84,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/variable'
+@import '~@/color'
 
 .app-wrapper {
   position relative

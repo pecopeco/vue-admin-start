@@ -25,6 +25,12 @@
 <script>
 
 export default {
+  data () {
+    return {
+      list: null,
+      listLoading: true
+    }
+  },
   filters: {
     statusFilter (status) {
       const statusMap = {
@@ -35,15 +41,6 @@ export default {
       return statusMap[status]
     }
   },
-  data () {
-    return {
-      list: null,
-      listLoading: true
-    }
-  },
-  created () {
-    this.fetchData()
-  },
   methods: {
     async fetchData () {
       this.listLoading = true
@@ -51,6 +48,9 @@ export default {
       this.list = res.data && res.data.items
       this.listLoading = false
     }
+  },
+  created () {
+    this.fetchData()
   }
 }
 </script>

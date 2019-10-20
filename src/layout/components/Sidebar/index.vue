@@ -68,7 +68,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/variable'
+@import '~@/color'
 
 .sidebarLogoFade-enter-active {
   transition opacity 1.5s

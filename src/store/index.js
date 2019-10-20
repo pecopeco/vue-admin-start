@@ -20,14 +20,14 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
-    SET_USER: (state, data) => {
+    setUser: (state, data) => {
       state.userInfo.name = data.name
       state.userInfo.avatar = data.avatar
     }
   },
   actions: {
-    setInfo({ commit }, data) {
-      commit('SET_USER', data)
+    setInfo ({ commit }, data) {
+      commit('setUser', data)
     }
   }
 })

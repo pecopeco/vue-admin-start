@@ -79,15 +79,7 @@ export default {
       },
       loading: false,
       passwordType: 'password',
-      redirect: undefined
-    }
-  },
-  watch: {
-    $route: {
-      handler: (route) => {
-        this.redirect = route.query && route.query.redirect
-      },
-      immediate: true
+      redirect: undefined || this.$route.query.redirect
     }
   },
   methods: {
@@ -106,8 +98,14 @@ export default {
         if (valid) {
           this.loading = true
           const param = { username: this.loginForm.username.trim(), password: this.loginForm.password }
-          const res = await this.$http.post('/user/login', param)
-          this.Cookies.set('Token', res.data.token)
+          const res = await this.$http.post(this.$config.api_url + '/login', param)
+          // if (res && res.data.token) {
+          //   this.Cookies.set('Token', res.data.token)
+          //   this.go({ path: this.redirect || '/' })
+          // }
+          // 测试阶段忽略账号验证
+          console.log(res)
+          this.Cookies.set('Token', 'res.data.token')
           this.go({ path: this.redirect || '/' })
           this.loading = false
         } else {

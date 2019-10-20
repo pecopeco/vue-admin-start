@@ -64,7 +64,7 @@ export default {
 
 <style scoped lang="stylus">
 .line {
-  text-align: center;
+  text-align center
 }
 </style>
 
