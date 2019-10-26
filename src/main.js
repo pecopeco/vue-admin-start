@@ -31,9 +31,6 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 const whiteList = ['/login'] // no redirect whitelist
 
 // fly请求全局配置
-if (Cookies.get('Token')) {
-  fly.config.headers = { 'X-Token': Cookies.get('Token') }
-}
 
 let config = {
   api_url: process.env.NODE_ENV !== 'production'
@@ -46,6 +43,10 @@ Vue.prototype.$config = config
 
 function request (url, form = {}, type) {
   NProgress.start()
+  
+  if (Cookies.get('Token')) {
+    fly.config.headers = { 'X-Token': Cookies.get('Token') }
+  }
   let compleForm = form
   // let presetForm = {
   //   orgName: 123456
@@ -63,12 +64,7 @@ function request (url, form = {}, type) {
     timeout: 5000
   }).then((res) => {
     NProgress.done()
-    if (res.status === 103) {
-      // token过期，跳转登陆页重新获取
-      Cookies.remove('Token')
-      router.push('/login')
-      return
-    } else if (type === 'delete' || res.status === 204) {
+    if (type === 'delete' || res.status === 204) {
       return res.text()
     } else if (res.data.state === 'T') {
       return res.data
@@ -97,6 +93,13 @@ function request (url, form = {}, type) {
     if (err.status >= 300) {
       const errortext = codeMessage[err.status] || err.response.statusText
       Message.error(errortext)
+    }
+    if (err.status === 401) {
+      // token过期，跳转登陆页重新获取
+      console.log('token过期')
+      Cookies.remove('Token')
+      resetRouter
+      router.push(`/login?redirect=${router.history.current.path}`)
     }
   })
 }
@@ -131,7 +134,7 @@ router.beforeEach(async (to, from, next) => {
       if (hasGetUserInfo) {
         next()
       } else {
-        const res = await request.get('/user/info', { token: Cookies.get('Token') })
+        const res = await request.get('/user/info')
         res && res.data && store.dispatch('setInfo', res.data)
         next()
       }
