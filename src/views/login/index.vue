@@ -107,6 +107,7 @@ export default {
           // }
           
           // 测试阶段忽略账号验证
+          console.log(res)
           this.Cookies.set('Token', 'res.data.token')
           this.go({ path: this.redirect || '/' })
           this.$message('登录成功！')
