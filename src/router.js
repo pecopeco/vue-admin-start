@@ -21,21 +21,35 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/home/home-total',
-    name: 'Home',
-    meta: { title: '首页', icon: 'home' },
+    redirect: '/home',
     children: [
       {
-        path: 'home-total',
-        name: 'HomeTotal',
-        component: () => import('@/views/home/homeTotal'),
-        meta: { title: '对账汇总统计报表', icon: 'home-total' }
+        path: 'home',
+        name: 'home',
+        component: () => import('@/views/home/index'),
+        meta: { title: '首页', icon: 'home' }
+      }
+    ]
+  },
+
+  {
+    path: '/state',
+    component: Layout,
+    redirect: '/state/state-total',
+    name: 'State',
+    meta: { title: '报表统计', icon: 'state' },
+    children: [
+      {
+        path: 'state-total',
+        name: 'StateTotal',
+        component: () => import('@/views/state/stateTotal'),
+        meta: { title: '对账汇总统计报表', icon: 'state-total' }
       },
       {
-        path: 'home-warn',
-        name: 'HomeWarn',
-        component: () => import('@/views/home/homeWarn'),
-        meta: { title: '异常账单差异报表', icon: 'home-warn' }
+        path: 'state-warn',
+        name: 'StateWarn',
+        component: () => import('@/views/state/stateWarn'),
+        meta: { title: '异常账单差异报表', icon: 'state-warn' }
       }
     ]
   },
