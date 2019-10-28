@@ -128,91 +128,91 @@ export default {
 }
 #app {
   .sidebar-container /deep/ {
-    transition: width 0.28s;
-    width: sideBarWidth !important;
-    background-color: menuBg;
-    height: 100%;
-    position: fixed;
-    font-size: 0px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1001;
-    overflow: hidden;
+    transition width 0.28s
+    width sideBarWidth !important
+    background-color menuBg
+    height 100%
+    position fixed
+    font-size 0px
+    top 0
+    bottom 0
+    left 0
+    z-index 1001
+    overflow hidden
     .horizontal-collapse-transition {
-      transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+      transition 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out
     }
     .scrollbar-wrapper {
-      overflow-x: hidden !important;
+      overflow-x hidden !important
     }
     .el-scrollbar__bar.is-vertical {
-      right: 0px;
+      right 0px
     }
     .el-scrollbar {
-      height: 100%;
-    }
-    &.has-logo {
-      .el-scrollbar {
-        height: calc(100% - 50px);
-      }
+      height 100%
     }
     .is-horizontal {
-      display: none;
+      display none
     }
     a {
-      display: inline-block;
-      width: 100%;
-      overflow: hidden;
+      display inline-block
+      width 100%
+      overflow hidden
     }
     .el-menu {
-      border: none;
-      height: 100%;
-      width: 100% !important;
+      border none
+      height 100%
+      width 100% !important
     }
     .submenu-title-noDropdown,
     .el-submenu__title {
       &:hover {
-        background-color: menuHover !important;
+        background-color menuHover !important
       }
     }
     .is-active>.el-submenu__title {
-      color: subMenuActiveText !important;
+      color subMenuActiveText !important
     }
     .nest-menu .el-submenu>.el-submenu__title,
     .el-submenu .el-menu-item {
-      min-width: sideBarWidth !important;
-      background-color: subMenuBg !important;
+      min-width sideBarWidth !important
+      background-color subMenuBg !important
       &:hover {
-        background-color: subMenuHover !important;
+        background-color subMenuHover !important
       }
+    }
+  }
+  .sidebar-container.has-logo /deep/ {
+    .el-scrollbar {
+      height calc(100% - 50px)
     }
   }
   .hideSidebar /deep/ {
     .sidebar-container {
-      width: 54px !important;
+      width 54px !important
     }
     .main-container {
-      margin-left: 54px!important;;
+      margin-left 54px!important
     }
     .submenu-title-noDropdown {
-      padding: 0 !important;
-      position: relative;
+      padding 0 !important
+      position relative
       .el-tooltip {
         display flex!important
         align-items center
         justify-content center
-        padding: 0 !important;
+        padding 0 !important
       }
     }
     .el-submenu {
-      overflow: hidden;
+      overflow hidden
       .el-submenu__title {
         display flex
         align-items center
         justify-content center
-        padding: 0 !important;
+        padding 0 !important
         .el-submenu__icon-arrow {
-          display: none;
+          display none
         }
       }
     }
@@ -220,39 +220,39 @@ export default {
       .el-submenu {
         .el-submenu__title {
           span {
-            height: 0;
-            width: 0;
-            overflow: hidden;
-            visibility: hidden;
-            display: inline-block;
+            height 0
+            width 0
+            overflow hidden
+            visibility hidden
+            display inline-block
           }
         }
       }
     }
   }
   .el-menu--collapse .el-menu .el-submenu {
-    min-width: sideBarWidth !important;
+    min-width sideBarWidth !important
   }
   .mobile /deep/ {
     .main-container {
-      margin-left: 0px;
+      margin-left 0px
     }
     .sidebar-container {
-      transition: transform .28s;
-      width: sideBarWidth !important;
+      transition transform .28s
+      width sideBarWidth !important
     }
     .hideSidebar {
       .sidebar-container {
-        pointer-events: none;
-        transition-duration: 0.3s;
-        transform: translate3d(-sideBarWidth, 0, 0);
+        pointer-events none
+        transition-duration 0.3s
+        transform translate3d(-sideBarWidth, 0, 0)
       }
     }
   }
   .withoutAnimation {
     .main-container,
     .sidebar-container {
-      transition: none;
+      transition none
     }
   }
 }
@@ -262,22 +262,22 @@ export default {
   .el-menu-item {
     &:hover {
       // you can use subMenuHover
-      background-color: menuHover !important;
+      background-color menuHover !important
     }
   }
   // the scroll bar appears when the subMenu is too long
   .el-menu--popup {
-    max-height: 100vh;
-    overflow-y: auto;
+    max-height 100vh
+    overflow-y auto
     &::-webkit-scrollbar-track-piece {
-      background: #d3dce6;
+      background #d3dce6
     }
     &::-webkit-scrollbar {
-      width: 6px;
+      width 6px
     }
     &::-webkit-scrollbar-thumb {
-      background: #99a9bf;
-      border-radius: 20px;
+      background #99a9bf
+      border-radius 20px
     }
   }
 }

@@ -1,14 +1,10 @@
-# vue-admin-start
-
-> vue admin 管理后台模板，使用 vue-element-admin 框架搭建，删除多余插件和配置并调整项目结构，添加一些个人习惯使用的组件，包含 Element UI、fly、pug、stylus等
-
-## Build Setup
+# payment_manager
 
 # 安装依赖
 npm install
 
 # 启动服务
-npm run dev
+npm start
 ```
 
 浏览器访问 [http://localhost:9528](http://localhost:9528)
@@ -23,3 +19,18 @@ npm run build:stage
 npm run build:prod
 ```
 
+## 其它
+
+```bash
+# 预览发布环境效果
+npm run preview
+
+# 预览发布环境效果 + 静态资源分析
+npm run preview -- --report
+
+# 代码格式检查
+npm run lint
+
+# 代码格式检查并自动修复
+npm run lint -- --fix
+```

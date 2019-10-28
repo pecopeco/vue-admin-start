@@ -6,25 +6,27 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import { Message } from 'element-ui'
 
-import locale from 'element-ui/lib/locale/lang/en' // lang i18n
+// import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 import App from './App'
 import store from './store'
 import router from './router'
 import { resetRouter } from '@/router'
-import mixin from './mixin'
-
-Vue.mixin(mixin)
 
 import NProgress from 'nprogress' // 页面顶端进度条
-import 'nprogress/nprogress.css'
+import 'nprogress/nprogress.css' // progress bar style
 import Cookies from 'js-cookie'
 import fly from 'flyio'
+import mixin from './mixin'
+import Print from 'vue-print-nb'
+
+Vue.mixin(mixin)
+Vue.use(Print)
 
 Vue.prototype.resetRouter = resetRouter
 Vue.prototype.Cookies = Cookies
 
 // set ElementUI lang to EN
-Vue.use(ElementUI, { locale })
+Vue.use(ElementUI)
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -45,7 +47,7 @@ function request (url, form = {}, type) {
   NProgress.start()
   
   if (Cookies.get('Token')) {
-    fly.config.headers = { 'X-Token': Cookies.get('Token') }
+    fly.config.headers = { 'Authorization': Cookies.get('Token') }
   }
   let compleForm = form
   // let presetForm = {
@@ -116,7 +118,7 @@ router.beforeEach(async (to, from, next) => {
   // start progress bar
   NProgress.start()
   // set page title
-  const title = 'Vue Admin Start'
+  const title = '后台管理系统'
   if (to.meta.title) {
     document.title = `${to.meta.title} - ${title}`
   } else {
@@ -134,8 +136,8 @@ router.beforeEach(async (to, from, next) => {
       if (hasGetUserInfo) {
         next()
       } else {
-        const res = await request.get('/user/info')
-        res && res.data && store.dispatch('setInfo', res.data)
+        // const res = await request.post('/user/info')
+        // res && res.data && store.dispatch('setInfo', res.data)
         next()
       }
     }

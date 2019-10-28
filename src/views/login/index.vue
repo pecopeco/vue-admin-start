@@ -70,8 +70,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: 'user',
+        password: 'password'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -98,15 +98,18 @@ export default {
         if (valid) {
           this.loading = true
           const param = { username: this.loginForm.username.trim(), password: this.loginForm.password }
-          const res = await this.$http.post(this.$config.api_url + '/login', param)
-          // if (res && res.data.token) {
-          //   this.Cookies.set('Token', res.data.token)
+          let res = await this.$http.post(this.$config.api_url + '/login', param)
+          res = res && JSON.parse(res)
+          // if (res && res.data && res.data.authorization) {
+          //   this.Cookies.set('Token', 'Bearer ' + res.data.authorization)
+          //   this.$message('登录成功！')
           //   this.go({ path: this.redirect || '/' })
           // }
+          
           // 测试阶段忽略账号验证
-          console.log(res)
           this.Cookies.set('Token', 'res.data.token')
           this.go({ path: this.redirect || '/' })
+          this.$message('登录成功！')
           this.loading = false
         } else {
           console.log('error submit!!')

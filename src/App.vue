@@ -10,7 +10,6 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '~@/color'
 
 body {
   height 100%
@@ -35,6 +34,54 @@ html {
     position relative
   }
 }
+.gray {
+  color fontGray
+}
+.bold {
+  font-weight bold
+}
+.red {
+  color red
+}
+textarea {
+  min-height 180px
+}
+// 日期选择
+.date {
+  .el-input__inner {
+    cursor pointer
+  }
+}
+// 分页
+.el-pagination {
+  margin-top 40px
+  margin-bottom 20px
+  text-align right
+}
+// 下拉框
+.select {
+  cursor pointer
+}
+// 输入框
+.el-input {
+  width auto
+}
+// 信息弹窗
+.info-model {
+  .info-list {
+    max-height 500px
+    overflow-y auto
+    .info-item {
+      display flex
+      align-items center
+      padding 20px 0
+      border-bottom 1px solid borderGray
+      span:first-child {
+        width 140px
+      }
+    }
+  }
+  }
 *,
 *:before,
 *:after {
@@ -63,10 +110,6 @@ div:focus {
     clear both
     height 0
   }
-}
-// main-container global css
-.app-container {
-  padding 20px
 }
 .el-breadcrumb__inner,
 .el-breadcrumb__inner a {
