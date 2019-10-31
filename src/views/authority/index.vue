@@ -72,7 +72,10 @@ export default {
           item.children.map((page) => {
             // 排除 home
             if (page.name !== 'home') {
-              this.authorityList.push({ name: page.name, cnName: page.meta.title})
+              this.authorityList.push({
+                name: page.name,
+                cnName: item.meta ? (item.meta.title + ' / ' + page.meta.title) : page.meta.title
+              })
             }
           })
         }
