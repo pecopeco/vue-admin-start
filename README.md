@@ -1,13 +1,13 @@
 # payment_manager
 
+> 后台管理系统，基于 vue-element-admin 搭建，权限控制由后端返回用户可访问页面表，前端重置本地路由表，权限控制页面可将权限控制结果提交后端更新
+
 # 安装依赖
 npm install
 
 # 启动服务
 npm start
 ```
-
-浏览器访问 [http://localhost:9528](http://localhost:9528)
 
 ## 发布
 
@@ -17,20 +17,4 @@ npm run build:stage
 
 # 构建生产环境
 npm run build:prod
-```
-
-## 其它
-
-```bash
-# 预览发布环境效果
-npm run preview
-
-# 预览发布环境效果 + 静态资源分析
-npm run preview -- --report
-
-# 代码格式检查
-npm run lint
-
-# 代码格式检查并自动修复
-npm run lint -- --fix
 ```
