@@ -5,6 +5,25 @@ export default {
   },
   data () {
     return {
+      // 接口返回所有用户权限列表
+      userList: [
+        {
+          name: 'admin',
+          authority: [
+            'state-total',
+            'state-warn',
+            'bill',
+            'authority'
+          ]
+        },
+        {
+          name: 'use',
+          authority: [
+            'state-warn',
+            'bill'
+          ]
+        }
+      ],
       // 测试数据
       defaultList: [
         {

@@ -27,7 +27,7 @@ export const constantRoutes = [
         path: 'home',
         name: 'home',
         component: () => import('@/views/home/index'),
-        meta: { title: '首页', icon: 'home' }
+        meta: { title: '首页', icon: 'home', role: true }
       }
     ]
   },
@@ -36,18 +36,18 @@ export const constantRoutes = [
     path: '/state',
     component: Layout,
     redirect: '/state/state-total',
-    name: 'State',
+    name: 'state',
     meta: { title: '报表统计', icon: 'state' },
     children: [
       {
         path: 'state-total',
-        name: 'StateTotal',
+        name: 'state-total',
         component: () => import('@/views/state/stateTotal'),
         meta: { title: '对账汇总统计报表', icon: 'state-total' }
       },
       {
         path: 'state-warn',
-        name: 'StateWarn',
+        name: 'state-warn',
         component: () => import('@/views/state/stateWarn'),
         meta: { title: '异常账单差异报表', icon: 'state-warn' }
       }
@@ -67,22 +67,36 @@ export const constantRoutes = [
       }
     ]
   },
+
+  {
+    path: '/authority',
+    component: Layout,
+    redirect: '/authority',
+    children: [
+      {
+        path: 'authority',
+        name: 'authority',
+        component: () => import('@/views/authority/index'),
+        meta: { title: '权限管理', icon: 'authority' }
+      }
+    ]
+  },
   
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-const createRouter = () => new Router({
+const createRouter = (setRouter) => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
+  routes: setRouter || constantRoutes
 })
 
 const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
-export function resetRouter () {
-  const newRouter = createRouter()
+export function resetRouter (setRouter) {
+  const newRouter = createRouter(setRouter)
   router.matcher = newRouter.matcher // reset router
 }
 

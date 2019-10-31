@@ -132,13 +132,26 @@ router.beforeEach(async (to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
+      // 访问页面判断用户权限
+      const name = store.state.userInfo.name
+      if (name) {
+        // 已获取用户信息
         next()
       } else {
+        // 第一次登录或者登录后刷新，获取用户信息（包含路由权限）
         // const res = await request.post('/user/info')
         // res && res.data && store.dispatch('setInfo', res.data)
-        next()
+        store.dispatch('setUser', {name: 'admin', avatar: 'avatar', authority: [
+          'state-total',
+          'state-warn',
+          'bill',
+          'authority'
+        ]}).then(() => {
+          // 根据当前用户权限生成路由表
+          store.dispatch('setRouter').then(() => {
+            next({ ...to, replace: true })
+          })
+        })
       }
     }
   } else {

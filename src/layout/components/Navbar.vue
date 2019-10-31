@@ -5,7 +5,8 @@
     .right-menu
       el-dropdown.avatar-container(trigger="click")
         .avatar-wrapper
-          img.user-avatar(:src="userInfo.avatar ? userInfo.avatar + '?imageView2/1/w/80/h/80' : defaultAvatar")
+          //- img.user-avatar(:src="userInfo.avatar ? userInfo.avatar + '?imageView2/1/w/80/h/80' : defaultAvatar")
+          img.user-avatar(:src="defaultAvatar")
           .name admin
           i.el-icon-caret-bottom
         el-dropdown-menu.user-dropdown(slot="dropdown")

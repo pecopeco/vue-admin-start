@@ -1,5 +1,5 @@
 <template lang="pug">
-  .menu-wrapper(v-if="!item.hidden")
+  .menu-wrapper(v-if="!item.hidden && item.children && item.children.length")
     template(v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.alwaysShow")
       app-link(v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)")
         el-menu-item(

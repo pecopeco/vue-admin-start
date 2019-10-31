@@ -5,6 +5,8 @@ import getters from './getters'
 import app from './modules/app'
 import settings from './modules/settings'
 
+import { constantRoutes, resetRouter } from '@/router'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -14,20 +16,40 @@ const store = new Vuex.Store({
   },
   getters,
   state: {
-    userInfo: {
-      name: '',
-      avatar: ''
+    userInfo: ''
+  },
+  actions: {
+    setUser ({ commit }, data) {
+      commit('setUser', data)
+    },
+    setRouter ({ commit }) {
+      commit('setRouter')
     }
   },
   mutations: {
     setUser: (state, data) => {
-      state.userInfo.name = data.name
-      state.userInfo.avatar = data.avatar
-    }
-  },
-  actions: {
-    setInfo ({ commit }, data) {
-      commit('setUser', data)
+      state.userInfo = data
+    },
+    setRouter: (state) => {
+      // 遍历本地路由表
+      constantRoutes.map((item) => {
+        // 排除 Login、404等非侧栏控制页面
+        if (item.children) {
+          const children = item.children.filter((page) => {
+            // 子页面与用户权限对应
+            state.userInfo.authority.map((authority) => {
+              // page.meta.rol为预设不受权限控制页面
+              if (authority === page.name && !page.meta.role) {
+                page.meta.role = true
+              }
+            })
+            return page.meta.role
+          })
+          item.children = children
+        }
+        return item
+      })
+      resetRouter(constantRoutes)
     }
   }
 })
