@@ -119,6 +119,7 @@ export default {
   .authority-wrap {
     .el-checkbox {
       margin-right 50px
+      margin-bottom 30px
     }
   }
   .btn-wrap {
