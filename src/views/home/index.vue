@@ -272,7 +272,7 @@ export default {
     }
   },
   created () {
-    this.$http.post(this.$config.api_url + '/admin/test')
+    this.$http.post('/admin/test')
     this.fetchData()
   }
 }

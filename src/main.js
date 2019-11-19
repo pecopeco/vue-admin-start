@@ -33,7 +33,6 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 const whiteList = ['/login'] // no redirect whitelist
 
 // fly请求全局配置
-
 let config = {
   api_url: process.env.NODE_ENV !== 'production'
   ? '/api'
@@ -41,7 +40,6 @@ let config = {
   ? 'https://456.com'
   : 'https://123.com'
 }
-Vue.prototype.$config = config
 
 function request (url, form = {}, type) {
   NProgress.start()
@@ -61,7 +59,7 @@ function request (url, form = {}, type) {
     }
     compleForm = formData
   }
-  return fly.request(url, compleForm, {
+  return fly.request(config.api_url + url, compleForm, {
     method: type,
     timeout: 5000
   }).then((res) => {

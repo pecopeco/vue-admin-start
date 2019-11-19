@@ -98,7 +98,7 @@ export default {
         if (valid) {
           this.loading = true
           const param = { username: this.loginForm.username.trim(), password: this.loginForm.password }
-          let res = await this.$http.post(this.$config.api_url + '/login', param)
+          let res = await this.$http.post('/login', param)
           res = res && JSON.parse(res)
           // if (res && res.data && res.data.authorization) {
           //   this.Cookies.set('Token', 'Bearer ' + res.data.authorization)
