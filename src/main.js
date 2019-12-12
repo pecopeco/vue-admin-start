@@ -38,7 +38,10 @@ Vue.use(Collapse)
 Vue.use(CollapseItem)
 Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
+Vue.use(Form)
+Vue.use(FormItem)
 
+Vue.prototype.$message = Message
 Vue.prototype.resetRouter = resetRouter
 Vue.prototype.Cookies = Cookies
 
