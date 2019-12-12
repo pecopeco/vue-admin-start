@@ -25,9 +25,8 @@
         )
       .btn-wrap
         el-button.btn(type="primary") 查询
-        el-button.btn(type="primary" v-print="'#print'") 打印
     .table
-      el-table#print(
+      el-table(
         v-loading="listLoading"
         :data="list"
         element-loading-text="Loading"
@@ -83,9 +82,6 @@ export default {
     },
     paySelect (val) {
       this.payType = val
-    },
-    print () {
-      window.print()
     },
     changePage (page) {
       console.log(page)

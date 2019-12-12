@@ -2,9 +2,7 @@ import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-import { Message } from 'element-ui'
+import { Message, Tag, Button, Dialog, Table, TableColumn, Pagination, DatePicker, Dropdown, DropdownMenu, DropdownItem, Breadcrumb, BreadcrumbItem, Submenu, MenuItem, Loading, Scrollbar, Menu, Collapse, CollapseItem, Checkbox, CheckboxGroup } from 'element-ui'
 
 // import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 import App from './App'
@@ -17,16 +15,32 @@ import 'nprogress/nprogress.css' // progress bar style
 import Cookies from 'js-cookie'
 import fly from 'flyio'
 import mixin from './mixin'
-import Print from 'vue-print-nb'
 
 Vue.mixin(mixin)
-Vue.use(Print)
+Vue.use(Tag)
+Vue.use(Button)
+Vue.use(Dialog)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Pagination)
+Vue.use(DatePicker)
+Vue.use(Dropdown)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Submenu)
+Vue.use(MenuItem)
+Vue.use(Loading)
+Vue.use(Scrollbar)
+Vue.use(Menu)
+Vue.use(Collapse)
+Vue.use(CollapseItem)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
 
 Vue.prototype.resetRouter = resetRouter
 Vue.prototype.Cookies = Cookies
-
-// set ElementUI lang to EN
-Vue.use(ElementUI)
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -36,7 +50,7 @@ const whiteList = ['/login'] // no redirect whitelist
 let config = {
   api_url: process.env.NODE_ENV !== 'production'
   ? '/api'
-  : process.env.VUE_APP_MODE === 'stage'
+  : process.env.VUE_APP_MODE === 'test'
   ? 'https://456.com'
   : 'https://123.com'
 }

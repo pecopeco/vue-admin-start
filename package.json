@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "vue-cli-service serve --open",
-    "build:prod": "vue-cli-service build",
-    "build:stage": "vue-cli-service build --mode staging",
+    "build": "vue-cli-service build",
+    "build:test": "vue-cli-service build --mode test",
     "prod": "vue-cli-service build && node ./prod.js",
     "prod:test": "vue-cli-service build --mode test && cross-env VUE_APP_MODE=test node ./prod.js",
     "preview": "node build/index.js --preview",
@@ -15,6 +15,8 @@
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.7.6",
+    "babel-plugin-component": "^1.1.1",
     "cross-env": "^6.0.3",
     "echarts": "^4.4.0",
     "element-ui": "2.11.1",
@@ -32,7 +34,6 @@
     "stylus-loader": "3.0.2",
     "vue": "2.6.10",
     "vue-echarts": "^4.0.4",
-    "vue-print-nb": "^1.4.0",
     "vue-router": "3.0.6",
     "vuex": "3.1.0",
     "xlsx": "^0.15.1"
