@@ -18,7 +18,7 @@ module.exports = {
   assetsDir: 'static',
   publicPath: '',
   devServer: {
-    open: true,
+    open: false,
     proxy: {
       '/api': {
         target: 'http://192.168.1.111:8080',

@@ -5,14 +5,17 @@
   "author": "pecopeco <yangpeco@qq.com>",
   "license": "MIT",
   "scripts": {
-    "start": "vue-cli-service serve",
+    "start": "vue-cli-service serve --open",
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
+    "prod": "vue-cli-service build && node ./prod.js",
+    "prod:test": "vue-cli-service build --mode test && cross-env VUE_APP_MODE=test node ./prod.js",
     "preview": "node build/index.js --preview",
     "lint": "eslint --ext .js,.vue src",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "dependencies": {
+    "cross-env": "^6.0.3",
     "echarts": "^4.4.0",
     "element-ui": "2.11.1",
     "file-saver": "^2.0.2",
@@ -23,6 +26,7 @@
     "path-to-regexp": "2.4.0",
     "pug": "2.0.4",
     "pug-plain-loader": "1.0.0",
+    "scp2": "^0.5.0",
     "style-resources-loader": "^1.2.1",
     "stylus": "0.54.6",
     "stylus-loader": "3.0.2",
