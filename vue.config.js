@@ -32,6 +32,13 @@ module.exports = {
   devServer: {
     port: port,
     open: true,
+    proxy: {
+      '/api': {
+        target: 'http://baidu.com',
+        changeOrigin: true,
+        pathRewrite: { '^/api': '' }
+      }
+    },
     overlay: {
       warnings: false,
       errors: true
@@ -49,7 +56,6 @@ module.exports = {
     }
   },
   chainWebpack(config) {
-    // it can improve the speed of the first screen, it is recommended to turn on preload
     config.plugin('preload').tap(() => [
       {
         rel: 'preload',

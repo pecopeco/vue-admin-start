@@ -1,9 +1,7 @@
-<template>
-  <section class="app-main">
-    <transition name="fade-transform" mode="out-in">
-      <router-view :key="key" />
-    </transition>
-  </section>
+<template lang="pug">
+  section.app-main
+    transition(name="fade-transform" mode="out-in")
+      router-view(:key="key")
 </template>
 
 <script>

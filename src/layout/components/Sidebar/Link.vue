@@ -1,11 +1,9 @@
-<template>
-  <component :is="type" v-bind="linkProps(to)">
-    <slot />
-  </component>
+<template lang="pug">
+  component(:is="type" v-bind="linkProps(to)")
+    slot
 </template>
 
 <script>
-import { isExternal } from '@/utils/validate'
 
 export default {
   props: {
@@ -15,11 +13,11 @@ export default {
     }
   },
   computed: {
-    isExternal() {
-      return isExternal(this.to)
+    isExt () {
+      return this.isExternal(this.to)
     },
     type() {
-      if (this.isExternal) {
+      if (this.isExt) {
         return 'a'
       }
       return 'router-link'
@@ -27,7 +25,7 @@ export default {
   },
   methods: {
     linkProps(to) {
-      if (this.isExternal) {
+      if (this.isExt) {
         return {
           href: to,
           target: '_blank',

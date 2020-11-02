@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import App from './App'
-import router from './router'
+import router from '@/router'
 import store from './store'
+import mixin from './mixin'
 import { Message } from 'element-ui'
+import defaultSettings from '@/settings'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import getPageTitle from '@/utils/get-page-title'
 
 import 'normalize.css/normalize.css' // CSS resets
 
@@ -17,9 +18,22 @@ import '@/styles/index.scss'
 
 import '@/icons'
 
+Vue.mixin(mixin)
+
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login'] // no redirect whitelist
+
+let utils = {...mixin.methods}
+utils.setHttp()
+
+const title = defaultSettings.title || 'Vue Admin Template'
+function getPageTitle (pageTitle) {
+  if (pageTitle) {
+    return `${pageTitle} - ${title}`
+  }
+  return `${title}`
+}
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
@@ -37,32 +51,30 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
+      if (store.state.userInfo) {
         next()
       } else {
-        try {
-          // get user info
-          await store.dispatch('user/getInfo')
-
+        // 测试
+        if (process.env.NODE_ENV !== 'production') {
+          store.dispatch('setUser', 'yang')
           next()
-        } catch (error) {
-          // remove token and go to login page to re-login
-          await store.dispatch('user/resetToken')
-          Message.error(error || 'Has Error')
+          return
+        }
+        let res = await utils.http.post('/getUserInfo')
+        if (res) {
+          store.dispatch('setUser', res.data)
+        } else {
+          localStorage.clear()
+          Message.error('获取个人信息失败')
           next(`/login?redirect=${to.path}`)
           NProgress.done()
         }
       }
     }
   } else {
-    /* has no token*/
-
     if (whiteList.indexOf(to.path) !== -1) {
-      // in the free login whitelist, go directly
       next()
     } else {
-      // other pages that do not have permission to access are redirected to the login page.
       next(`/login?redirect=${to.path}`)
       NProgress.done()
     }

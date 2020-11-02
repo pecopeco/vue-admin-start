@@ -76,6 +76,10 @@
       }
     }
 
+    .is-active {
+      background-color: $menuActiveBg !important;
+    }
+
     .is-active>.el-submenu__title {
       color: $subMenuActiveText !important;
     }

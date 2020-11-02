@@ -1,16 +1,12 @@
-<template>
-  <div class="sidebar-logo-container" :class="{'collapse':collapse}">
-    <transition name="sidebarLogoFade">
-      <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo">
-        <h1 v-else class="sidebar-title">{{ title }} </h1>
-      </router-link>
-      <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo">
-        <h1 class="sidebar-title">{{ title }} </h1>
-      </router-link>
-    </transition>
-  </div>
+<template lang="pug">
+  .sidebar-logo-container(:class="{'collapse':collapse}")
+    transition(name="sidebarLogoFade")
+      router-link.sidebar-logo-link(v-if="collapse" key="collapse" to="/")
+        img.sidebar-logo(v-if="logo" :src="logo")
+        h1.sidebar-title(v-else) {{ title }} 
+      router-link.sidebar-logo-link(v-else key="expand" to="/")
+        img.sidebar-logo(v-if="logo" :src="logo")
+        h1.sidebar-title {{ title }}
 </template>
 
 <script>
