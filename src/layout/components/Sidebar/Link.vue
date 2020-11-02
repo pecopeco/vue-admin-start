@@ -1,6 +1,7 @@
-<template lang="pug">
-  component(v-bind="linkProps(to)")
-    slot
+<template>
+  <component :is="type" v-bind="linkProps(to)">
+    <slot />
+  </component>
 </template>
 
 <script>
@@ -13,19 +14,28 @@ export default {
       required: true
     }
   },
+  computed: {
+    isExternal() {
+      return isExternal(this.to)
+    },
+    type() {
+      if (this.isExternal) {
+        return 'a'
+      }
+      return 'router-link'
+    }
+  },
   methods: {
-    linkProps (url) {
-      if (isExternal(url)) {
+    linkProps(to) {
+      if (this.isExternal) {
         return {
-          is: 'a',
-          href: url,
+          href: to,
           target: '_blank',
           rel: 'noopener'
         }
       }
       return {
-        is: 'router-link',
-        to: url
+        to: to
       }
     }
   }
